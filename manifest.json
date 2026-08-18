@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Notebook Clipper",
+  "version": "0.1.0",
+  "description": "Right-click any page, convert it to Markdown, and send it to a Google NotebookLM notebook as a pasted-text source.",
+  "permissions": ["contextMenus", "sidePanel", "storage", "tabs", "scripting", "activeTab"],
+  "host_permissions": ["https://notebooklm.google.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "side_panel": {
+    "default_path": "sidebar/sidebar.html"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

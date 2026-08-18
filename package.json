@@ -1,0 +1,17 @@
+{
+  "name": "notebook-clipper",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Chrome MV3 extension that clips a page to Markdown and sends it to a Google NotebookLM notebook.",
+  "scripts": {
+    "test": "node test/validate.js",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "eslint": "9.15.0",
+    "globals": "15.12.0",
+    "prettier": "3.3.3"
+  }
+}

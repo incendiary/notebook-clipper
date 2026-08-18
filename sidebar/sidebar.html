@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Notebook Clipper</title>
+    <link rel="stylesheet" href="sidebar.css" />
+  </head>
+  <body>
+    <h1>Notebook Clipper</h1>
+
+    <!-- Configure view -->
+    <section id="view-config">
+      <h2>Notebooks</h2>
+      <ul id="notebook-list" class="notebook-list"></ul>
+      <p id="notebook-empty" class="muted">No notebooks saved yet.</p>
+
+      <form id="add-notebook-form" class="stack">
+        <label for="notebook-name">Name</label>
+        <input id="notebook-name" type="text" placeholder="Course notes" autocomplete="off" />
+
+        <label for="notebook-id">Notebook ID</label>
+        <input
+          id="notebook-id"
+          type="text"
+          placeholder="abc123-..."
+          autocomplete="off"
+          required
+        />
+
+        <button type="submit" class="primary">Save notebook</button>
+      </form>
+      <p class="help">
+        Find your Notebook ID in the NotebookLM URL: notebooklm.google.com/notebook/{ID}
+      </p>
+
+      <h2>Default notebook</h2>
+      <select id="default-notebook"></select>
+
+      <h2>Mode</h2>
+      <div class="mode-toggle" role="group" aria-label="Mode">
+        <button type="button" id="mode-markdown" class="mode active" aria-pressed="true">
+          Markdown
+        </button>
+        <button type="button" id="mode-pdf" class="mode" aria-pressed="false">PDF</button>
+      </div>
+    </section>
+
+    <!-- Send view -->
+    <section id="view-send" hidden>
+      <h2 id="send-title" class="send-title"></h2>
+      <p id="send-url" class="muted small"></p>
+
+      <label for="send-notebook">Notebook</label>
+      <select id="send-notebook"></select>
+
+      <label for="markdown-preview">Markdown</label>
+      <pre id="markdown-preview" class="preview"></pre>
+      <textarea
+        id="markdown-editor"
+        class="editor"
+        hidden
+        aria-label="Edit markdown"
+      ></textarea>
+
+      <div class="row">
+        <button type="button" id="send-button" class="primary">Send to NotebookLM</button>
+        <button type="button" id="edit-button" class="secondary">Edit Markdown</button>
+      </div>
+
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+      <a href="#" id="back-to-config" class="link">Back to config</a>
+    </section>
+
+    <div id="toast" class="toast" hidden></div>
+
+    <script src="sidebar.js"></script>
+  </body>
+</html>
