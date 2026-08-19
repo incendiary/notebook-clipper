@@ -54,6 +54,53 @@ Add it in the side panel under **Notebooks**. Pasting the whole URL works too:
 the extension extracts the ID. Notebooks are stored in `chrome.storage.sync`, so
 they follow your Chrome profile.
 
+## Usage
+
+### First run
+
+1. Click the extension icon to open the side panel. It opens on the **Configure**
+   view.
+2. Under **Notebooks**, give the notebook a name, paste its ID (or its full
+   NotebookLM URL), and click **Save notebook**.
+3. Set **Default notebook** if you saved more than one. The first notebook you
+   add becomes the default automatically.
+4. Leave **Mode** on **Markdown**. PDF is a stub.
+
+You only do this once. Notebooks persist in `chrome.storage.sync`.
+
+### Clipping a page
+
+1. Make sure you are signed in to NotebookLM in the same Chrome profile.
+2. Go to the page you want to capture. To clip only part of it, select that part
+   first: if a selection exists, only the selection is converted.
+3. Right-click and choose **Send to NotebookLM**.
+4. The side panel switches to the **Send** view showing the page title, source
+   URL, and the first 500 characters of the Markdown.
+5. Check the notebook in the picker. Click **Edit Markdown** if you want to fix
+   the conversion by hand before sending; click **Done editing** to return to the
+   preview.
+6. Click **Send to NotebookLM**. The extension opens or focuses a NotebookLM tab,
+   navigates to the notebook, and drives the **Add source → Copied text** dialog.
+7. Watch the status line: **Sending…**, then **Success** or an error naming the
+   step that failed.
+
+Leave the NotebookLM tab alone while it runs. The injector is clicking real
+controls, so interacting with the dialog at the same time can make it fail.
+
+### When it fails
+
+Errors name the step, for example `Timed out after 5s at step: finding the
+"Add source" button`. That almost always means one of three things:
+
+- You are not signed in to NotebookLM in this profile.
+- The notebook ID is wrong, so the notebook never loaded.
+- Google has renamed a control, and the matching text in
+  `content/notebooklm.js` needs updating.
+
+Open the NotebookLM tab's DevTools console and filter on `[NotebookClipper]` for
+the full error. The extracted Markdown is still in the side panel, so nothing is
+lost: fix the cause and click send again, or copy the text out manually.
+
 ## Development
 
 ```bash
